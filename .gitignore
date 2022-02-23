@@ -1,0 +1,7 @@
+TestSelector/TestSelector.Services.UnitTests/bin/
+TestSelector/TestSelector.Services/obj/
+TestSelector/TestSelector.Services.UnitTests/obj/
+TestSelector/TestSelector.Client.Console/obj/
+TestSelector/TestSelector.Services/bin/
+TestSelector/.vs/
+TestSelector/TestSelector.Client.Console/bin/
