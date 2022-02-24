@@ -53,5 +53,10 @@ namespace TestSelector.Services.SourceControl.Model
         {
             return HashCode.Combine(DeletedStart, DeletedEnd, AddedStart, AddedEnd);
         }
+
+        public override string ToString()
+        {
+            return $"Deleted: [{DeletedStart},{DeletedEnd}] Added: [{AddedStart},{AddedEnd}]";
+        }
     }
 }

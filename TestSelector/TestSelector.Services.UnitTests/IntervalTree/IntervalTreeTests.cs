@@ -4,7 +4,7 @@ using System.Linq;
 using NUnit.Framework;
 using TestSelector.Services.TestMatcher.IntervalTree;
 
-namespace TestSelector.Services.UnitTests
+namespace TestSelector.Services.UnitTests.IntervalTree
 {
     [TestFixture]
     public class IntervalTreeTests
@@ -30,7 +30,7 @@ namespace TestSelector.Services.UnitTests
         }
 
         [TestCaseSource(nameof(IntervalsSmall))]
-        //[TestCaseSource(nameof(IntervalsMedium))]
+        [TestCaseSource(nameof(IntervalsMedium))]
         //[TestCaseSource(nameof(IntervalsLarge))]
         public void IntervalTree_AfterIntervalInserts_FindsOverlapsCorrectly(List<Tuple<int, int, string>> intervals)
         {
@@ -52,8 +52,7 @@ namespace TestSelector.Services.UnitTests
                 if(randomInterval.Item1>= randomInterval.Item2-2)
                     continue;
 
-                //var testInterval = Tuple.Create(randomInterval.Item1 + 1, randomInterval.Item2 - 1);
-                var testInterval = Tuple.Create(47, 86);
+                var testInterval = Tuple.Create(randomInterval.Item1 + 1, randomInterval.Item2 - 1);
                 var expectedIds = intervals
                     .Where(x => Math.Max(x.Item1, testInterval.Item1) <= Math.Min(x.Item2, testInterval.Item2))
                     .Select(x => x.Item3)
@@ -68,13 +67,13 @@ namespace TestSelector.Services.UnitTests
 
         #region Test Cases
 
-        public static IEnumerable<TestCaseData> IntervalsSmall => GenerateIntervals(5, 5, 100);
+        public static IEnumerable<TestCaseData> IntervalsSmall => GenerateIntervals(10, 100, 100);
         public static IEnumerable<TestCaseData> IntervalsMedium => GenerateIntervals(100, 1000, 1000);
         public static IEnumerable<TestCaseData> IntervalsLarge => GenerateIntervals(1000, 10000, 10000);
 
-        public static IEnumerable<TestCaseData> GenerateIntervals(int listsCount, int intervalsCount, int maxValue)
+        public static IEnumerable<TestCaseData> GenerateIntervals(int testCases, int intervalsCount, int maxValue)
         {
-            for (int i = 0; i< listsCount; i++)
+            for (int i = 0; i< testCases; i++)
             {
                 var intervals = new List<Tuple<int, int, string>>();
 

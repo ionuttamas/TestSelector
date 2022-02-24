@@ -12,5 +12,10 @@ namespace TestSelector.Services.CodeCoverage.Model
 
         public string TestId { get; }
         public List<CodeRange> Ranges { get; }
+
+        public override string ToString()
+        {
+            return TestId;
+        }
     }
 }

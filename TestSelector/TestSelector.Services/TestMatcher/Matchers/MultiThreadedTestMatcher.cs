@@ -8,17 +8,17 @@ using TestSelector.Services.TestMatcher.Model;
 
 namespace TestSelector.Services.TestMatcher.Matchers
 {
-    public class ConcurrentThreadedTestMatcher : BaseTestMatcher
+    public class MultiThreadedTestMatcher : BaseTestMatcher
     {
         private readonly int workers;
-        private readonly ConcurrentQueue<Tuple<FileChange, CodeCoverage.Model.CodeCoverage>> taskQueue;
+        private readonly ConcurrentQueue<Tuple<FileChange, List<CodeCoverage.Model.CodeCoverage>>> taskQueue;
         private readonly ConcurrentQueue<List<TestMatch>> resultQueue;
 
-        public ConcurrentThreadedTestMatcher(int workers = 5)
+        public MultiThreadedTestMatcher(int workers = 5)
         {
             this.workers = workers;
             //This is just one queueing strategy; more sophisticated queueing strategies can be applied
-            taskQueue = new ConcurrentQueue<Tuple<FileChange, CodeCoverage.Model.CodeCoverage>>();
+            taskQueue = new ConcurrentQueue<Tuple<FileChange, List<CodeCoverage.Model.CodeCoverage>>>();
             //We forcibly iterate here through the results
             resultQueue = new ConcurrentQueue<List<TestMatch>>();
         }
@@ -30,10 +30,7 @@ namespace TestSelector.Services.TestMatcher.Matchers
         {
             foreach (var fileChange in comparisonTable.Keys)
             {
-                foreach (var codeCoverage in comparisonTable[fileChange])
-                {
-                    taskQueue.Enqueue(Tuple.Create(fileChange, codeCoverage));
-                }
+                taskQueue.Enqueue(Tuple.Create(fileChange, comparisonTable[fileChange]));
             }
 
             var threads = new List<Thread>();

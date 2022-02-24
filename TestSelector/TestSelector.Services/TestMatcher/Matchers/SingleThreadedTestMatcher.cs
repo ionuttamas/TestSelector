@@ -13,12 +13,9 @@ namespace TestSelector.Services.TestMatcher.Matchers
         {
             foreach (var fileChange in comparisonTable.Keys)
             {
-                foreach (var codeCoverage in comparisonTable[fileChange])
+                foreach (var testMatch in ExtractTestMatches(comparisonTable[fileChange], fileChange))
                 {
-                    foreach (var testMatch in ExtractTestMatches(codeCoverage, fileChange))
-                    {
-                        yield return testMatch;
-                    }
+                    yield return testMatch;
                 }
             }
         }

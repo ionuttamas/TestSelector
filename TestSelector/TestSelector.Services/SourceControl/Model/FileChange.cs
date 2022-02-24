@@ -16,5 +16,10 @@ namespace TestSelector.Services.SourceControl.Model
 
         public string Filepath { get; }
         public List<LineChange> LineChanges { get; set; }
+
+        public override string ToString()
+        {
+            return Filepath;
+        }
     }
 }

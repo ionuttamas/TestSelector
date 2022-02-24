@@ -15,6 +15,7 @@ namespace TestSelector.Services.TestMatcher.IntervalTree
                 Low = low;
                 High = high;
                 Max = high;
+                Min = low;
             }
 
             public IntervalNode(int low, int high, TData data) : this(low, high)
@@ -58,7 +59,7 @@ namespace TestSelector.Services.TestMatcher.IntervalTree
 
             while (currentNode!=null)
             {
-                currentNode.Min = Math.Max(currentNode.Min, low);
+                currentNode.Min = Math.Min(currentNode.Min, low);
                 currentNode.Max = Math.Max(currentNode.Max, high);
 
                 if (low < currentNode.Low)
@@ -111,7 +112,7 @@ namespace TestSelector.Services.TestMatcher.IntervalTree
             }
         } 
 
-        private static bool Overlaps(int firstLow, int firstHigh, int secondLow, int secondHigh)
+        public static bool Overlaps(int firstLow, int firstHigh, int secondLow, int secondHigh)
         {
             return Math.Max(firstLow, secondLow) <= Math.Min(firstHigh, secondHigh);
         }
