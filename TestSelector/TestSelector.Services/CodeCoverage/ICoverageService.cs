@@ -6,6 +6,6 @@ namespace TestSelector.Services.CodeCoverage
 {
     public interface ICoverageService
     {
-        public List<Model.CodeCoverage> GetCodeCoverages(ICoverageConfig config);
+        public List<Model.CodeCoverage> GetCodeCoverage(ICoverageConfig config);
     }
 }

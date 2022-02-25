@@ -5,6 +5,6 @@ namespace TestSelector.Services.SourceControl
 {
     public interface ICodeChangeService
     {
-        public List<FileChange> GetCodeChanges(ICodeDelta codeDelta);
+        public List<FileChange> GetFileChanges(ICodeDelta codeDelta);
     }
 }

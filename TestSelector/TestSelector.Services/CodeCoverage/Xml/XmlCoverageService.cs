@@ -7,7 +7,7 @@ namespace TestSelector.Services.CodeCoverage.Xml
 {
     public class XmlCoverageService : ICoverageService
     {
-        public List<Model.CodeCoverage> GetCodeCoverages(ICoverageConfig config)
+        public List<Model.CodeCoverage> GetCodeCoverage(ICoverageConfig config)
         {
             /* Supports the following xml schema
                 <?xml version="1.0" encoding="ISO-8859-1"?>  

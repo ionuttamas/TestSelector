@@ -13,7 +13,7 @@ namespace TestSelector.Services.SourceControl.Git
         private const string ADDED_MARKER = "+";
         private const string DELETED_MARKER = "-";
 
-        public List<FileChange> GetCodeChanges(ICodeDelta codeDelta)
+        public List<FileChange> GetFileChanges(ICodeDelta codeDelta)
         {
             if (!(codeDelta is GitCodeDelta))
                 throw new ArgumentException("Code delta argument is supported");
